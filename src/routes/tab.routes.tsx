@@ -3,7 +3,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { Recipe } from '../screens/recipe';
 import { Inventory } from '../screens/inventory/Inventory';
 import { Product } from '../screens/product';
-import { Dashboard } from '../screens/dashboard';
+import { Dashboard } from '../screens/dashboard/dashboard';
 
 const { Screen, Navigator } = createBottomTabNavigator();
 
