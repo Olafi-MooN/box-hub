@@ -18,13 +18,13 @@ const Inventory = () => {
       <BoxText twStyle='text-stone-900 text-4xl p-4 font-bold'>Estoque</BoxText>
       <BoxCard
         onPress={() => setOpenModal(true)}
-        description='Adicione produtos no seu estoque, para criar receitas!'
-        title='Adicionar produtos no estoque'
+        description='Adicione ingredientes no seu estoque, para criar receitas!'
+        title='Adicionar ingredientes no estoque'
         badge={<Icon name={'add-box'} size={24} color={'white'} />} />
       <BoxCard
         onPress={() => setOpenModalView(true)}
-        description='Adicione produtos no seu estoque, para criar receitas!'
-        title='Visualizar produtos em estoque'
+        description='Adicione ingredientes no seu estoque, para criar receitas!'
+        title='Visualizar ingredientes em estoque'
         badge={<Icon name={'preview'} size={24} color={'white'} />} />
 
       <BoxModal onOpenModal={openModal} setOpenModal={setOpenModal}>

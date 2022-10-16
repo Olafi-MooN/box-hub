@@ -35,9 +35,23 @@ const sqlite = () => {
     })
   }
 
+  const exclude = (tableName: string, condition: string) => {
+    const sql = `DELETE FROM ${tableName} WHERE ${condition};`
+    return new Promise(resolve => {
+      db.transaction(tx => {
+        tx.executeSql(
+          sql,
+          undefined,
+          (tx, res) => resolve(res),
+          err => { throw new Error(JSON.stringify(err)) })
+      })
+    })
+  }
+
   return {
     insert,
-    selectAll
+    selectAll,
+    exclude
   }
 }
 

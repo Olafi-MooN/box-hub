@@ -12,7 +12,7 @@ export declare global {
       id?: string;
       name: string;
       quantity: string;
-      unityMeasure: unityMeasure;
+      unityMeasure: EUnityMeasure;
       created_at: timestamp;
       updated_at: timestamp;
     }
