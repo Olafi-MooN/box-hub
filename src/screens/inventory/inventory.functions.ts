@@ -9,7 +9,6 @@ function InventoryFunctions() {
 
   const getAll = async () => {
     const res = await sqlite().selectAll('Inventories');
-    console.log(res);
     return res;
   }
 

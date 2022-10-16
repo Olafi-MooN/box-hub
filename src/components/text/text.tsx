@@ -10,7 +10,7 @@ interface IBoxTextProps extends ITextProps {
 }
 
 const BoxText = (props: IBoxTextProps) => (
-  <Text style={tw`text-slate-50 ${props.twStyle as string}`} {...props.textProps}>
+  <Text style={tw`text-slate-50 ${props.twStyle as string}`} {...props.textProps} {...props}>
     {props.children}
   </Text>
 );

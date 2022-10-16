@@ -4,7 +4,6 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { StatusBar } from 'react-native';
 import { NativeBaseProvider } from 'native-base';
 import './src/database/queryExecute';
-import { BoxAlert } from './src/components/alert/alert';
 
 export default function App() {
   return (

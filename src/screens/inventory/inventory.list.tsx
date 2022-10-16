@@ -1,9 +1,23 @@
 import { Box, Heading, HStack, Avatar, VStack, Spacer, FlatList, Text } from "native-base";
 import React, { useEffect, useState } from "react";
+import { Dimensions } from "react-native";
+import { BoxTable, IBoxTableProps } from "../../components/table/table";
+import { BoxText } from "../../components/text/text";
 import { InventoryFunctions } from "./inventory.functions";
 
 const InventoryList = () => {
   const [data, setData] = useState<Inventory.IInventoryProps[]>([] as Inventory.IInventoryProps[]);
+  const [editClick, setEditClick] = useState<any>({} as any);
+  const [deleteClick, setDeleteClick] = useState<any>({} as any);
+
+  useEffect(() => { 
+    console.log(editClick);
+  }, [editClick]);
+
+  useEffect(() => { 
+    console.log(deleteClick);
+  }, [deleteClick]);
+
   useEffect(() => {
     (async () => {
       const data = await InventoryFunctions().getAll();
@@ -11,40 +25,30 @@ const InventoryList = () => {
     })()
   }, [])
 
-  return <Box paddingX={5}>
-    {/* <Heading fontSize="xl" p="4" pb="3">
-      Inbox
-    </Heading>
-    <FlatList data={data} renderItem={({
-      item
-    }) => <Box borderBottomWidth="1" _dark={{
-      borderColor: "muted.50"
-    }} borderColor="muted.800" pl={["0", "4"]} pr={["0", "5"]} py="2">
-        <HStack space={[2, 3]} justifyContent="space-between">
-          <Avatar size="48px" source={{
-            uri: item.avatarUrl
-          }} />
-          <VStack>
-            <Text _dark={{
-              color: "warmGray.50"
-            }} color="coolGray.800" bold>
-              {item.fullName}
-            </Text>
-            <Text color="coolGray.600" _dark={{
-              color: "warmGray.200"
-            }}>
-              {item.recentText}
-            </Text>
-          </VStack>
-          <Spacer />
-          <Text fontSize="xs" _dark={{
-            color: "warmGray.50"
-          }} color="coolGray.800" alignSelf="flex-start">
-            {item.timeStamp}
-          </Text>
-        </HStack>
-      </Box>} keyExtractor={item => item.id} /> */}
-  </Box>;
+  const mock = {
+    body: [
+      {name: 'produto1', unidade: '600 mg'},
+      {name: 'produto2', unidade: '200 mg'},
+      {name: 'produto3', unidade: '200 mg'},
+      {name: 'produto4', unidade: '200 mg'},
+      {name: 'produto5', unidade: '200 mg'},
+      {name: 'produto6', unidade: '200 mg'},
+    ],
+    columns: [{ name: 'name', size: '60%' }, { name: 'unidade', size: '30%' }]
+  } as IBoxTableProps;
+
+  return (
+    <>
+      <Box alignItems="center" height={Dimensions.get('window').height - 120 - 60}>
+        <BoxText twStyle='text-stone-900 text-2xl p-4 font-bold'>Adicionar produto</BoxText>
+        <BoxTable 
+          body={mock.body} 
+          columns={mock.columns} 
+          setClickEdit={setEditClick} 
+          setClickDelete={setDeleteClick}/>
+      </Box>
+    </>
+  );
 };
 
 export { InventoryList }

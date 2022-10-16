@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { View, Button, Text, Pressable } from 'react-native';
+import { View } from 'react-native';
 import { BoxCard } from '../../components/cards/cards';
 import { BoxModal } from '../../components/modal/modal';
 import { BoxText } from '../../components/text/text';
@@ -12,10 +12,6 @@ const Inventory = () => {
   const navigation = useNavigation();
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [openModalView, setOpenModalView] = useState<boolean>(false);
-
-  const handleOpenScreen = () => {
-    navigation.navigate('inventory');
-  }
 
   return (
     <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
