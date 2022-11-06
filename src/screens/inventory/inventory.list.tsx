@@ -17,7 +17,7 @@ const InventoryList = () => {
 
   useEffect(() => {
     console.log(editClick.id);
-    if(editClick.id) { 
+    if (editClick.id) {
       setOpenModalEdit(true);
     }
   }, [editClick]);
@@ -48,7 +48,7 @@ const InventoryList = () => {
 
   const boxTableObject = {
     body: data,
-    columns: [{ name: 'name', size: '60%' }, { name: 'quantity', size: '30%' }]
+    columns: [{ name: 'name', size: '60%' }, { name: 'quantity', size: '25%' }]
   } as IBoxTableProps;
 
   return (
@@ -64,7 +64,7 @@ const InventoryList = () => {
 
       <DialogConfirm openDialog={openModalDelete} setOpenDialog={setOpenModalDelete} handleSubmit={handleActionDelete} />
       <BoxModal onOpenModal={openModalEdit} setOpenModal={setOpenModalEdit}>
-        <InventoryForm inventoryId={editClick.id}/>
+        <InventoryForm inventoryId={editClick.id} />
       </BoxModal>
     </>
   );

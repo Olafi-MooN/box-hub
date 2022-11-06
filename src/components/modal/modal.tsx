@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, Dimensions } from 'react-native';
 import { Modalize, ModalizeProps } from 'react-native-modalize';
 import Icon from '@expo/vector-icons/MaterialIcons'
-import { HStack } from 'native-base';
+import { Actionsheet, HStack, ScrollView } from 'native-base';
 
 interface BoxModalProps {
   modalizeProps?: ModalizeProps;
@@ -12,34 +12,31 @@ interface BoxModalProps {
 }
 
 export const BoxModal = ({ modalizeProps, onOpenModal, children, setOpenModal }: BoxModalProps) => {
-  const modalizeRef = useRef<Modalize>(null);
 
   useEffect(() => {
     if (onOpenModal) {
       setOpenModal(true);
-      modalizeRef.current?.open();
     }
-    else { 
-      modalizeRef.current?.close(); 
+    else {
       setOpenModal(false);
     }
   }, [onOpenModal])
 
   return (
-    <Modalize
-      ref={modalizeRef}
-      onClosed={() => setOpenModal(false)}
-      HeaderComponent={
-        <HStack space={3} justifyContent="flex-end" p={4}>
+    <Actionsheet isOpen={onOpenModal} onClose={() => setOpenModal(false)}>
+      <Actionsheet.Content width={'100%'}>
+
+        <HStack space={3} w={'100%'} justifyContent="flex-end" p={4}>
           <Icon name={'close'} size={25} onPress={() => {
             setOpenModal(false);
-            modalizeRef.current?.close();
           }}></Icon>
         </HStack>
-      }
-      modalHeight={Dimensions.get('window').height - 120}
-      {...modalizeProps}>
-      {children}
-    </Modalize>
+        <HStack space={3} w={'100%'} justifyContent="center" p={4}>
+          <ScrollView>
+            {children}
+          </ScrollView>
+        </HStack>
+      </Actionsheet.Content>
+    </Actionsheet>
   );
 };

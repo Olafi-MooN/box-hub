@@ -1,6 +1,7 @@
 import { CloseIcon, HStack, IconButton, Stack, VStack, Alert, Text, Center, Box } from 'native-base';
 import { IAlertProps } from 'native-base/lib/typescript/components/composites';
 import React, { useContext, useEffect, useState } from 'react';
+import { Dimensions } from 'react-native';
 
 interface IStatusArrayProps {
   status: 'info' | 'warning' | 'success' | 'error' | (string & {})
@@ -18,7 +19,7 @@ const BoxAlert = (props: IBoxAlertProps) => {
 
   return (
     <>
-      <Stack space={3} w="100%" p={3} style={{ position: 'absolute', bottom: 0 }}>
+      <Stack space={3} w="100%" p={3} style={{ position: 'absolute', top: 0 }}>
         {alertData.map((status, key) => {
           return <Alert w="100%" status={status.status} key={key}>
             <VStack space={2} flexShrink={1} w="100%">
