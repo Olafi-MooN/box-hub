@@ -15,7 +15,14 @@ export const BoxModal = ({ modalizeProps, onOpenModal, children, setOpenModal }:
   const modalizeRef = useRef<Modalize>(null);
 
   useEffect(() => {
-    if (onOpenModal) modalizeRef.current?.open();
+    if (onOpenModal) {
+      setOpenModal(true);
+      modalizeRef.current?.open();
+    }
+    else { 
+      modalizeRef.current?.close(); 
+      setOpenModal(false);
+    }
   }, [onOpenModal])
 
   return (

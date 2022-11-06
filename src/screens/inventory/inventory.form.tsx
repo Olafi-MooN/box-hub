@@ -1,23 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BoxButton } from '../../components/buttons/button';
 import { BoxText } from '../../components/text/text';
-import { Box, FormControl, Stack, Input, WarningOutlineIcon, Select, CheckIcon, HStack } from 'native-base';
+import { Box, FormControl, Stack, Input, WarningOutlineIcon, Select, CheckIcon } from 'native-base';
 import { InventoryFunctions } from './inventory.functions';
 import { BoxAlert } from '../../components/alert/alert';
 import { activeDebounce } from '../../utils/debounce';
 import { Dimensions } from 'react-native';
 
-const InventoryForm = () => {
-  const listUnities = [
-    { text: 'Kilo Grama', value: 'kg' },
-    { text: 'Grama', value: 'g' },
-    { text: 'Mili Litro', value: 'ml' },
-    { text: 'Litro', value: 'l' },
-  ];
+interface InventoryFormProps {
+  inventoryId?: number;
+}
 
-  const [unitMeasurement, setUnitMeasure] = useState<string>();
+const InventoryForm = (props: InventoryFormProps) => {
+  const { inventoryId } = props;
+  const listUnities = [
+    { text: 'Quilograma', value: 'KG' },
+    { text: 'Grama', value: 'G' },
+    { text: 'Litro', value: 'L' },
+  ];
+  const [unitMeasurement, setUnitMeasure] = useState<Inventory.UnityMeasureType>();
   const [active, setActive] = useState<boolean>(false);
   const [values, setValues] = useState<Inventory.IInventoryProps>({} as Inventory.IInventoryProps);
+
+  useEffect(() => {
+    if (inventoryId) {
+      console.log(inventoryId);
+    }
+  }, [inventoryId!])
 
   const handleSubmit = async () => {
     const result = await InventoryFunctions().submit(values);
@@ -56,7 +65,7 @@ const InventoryForm = () => {
                 endIcon: <CheckIcon size="5" />
               }} mt={1} onValueChange={
                 (itemValue: string) => {
-                  setUnitMeasure(itemValue);
+                  setUnitMeasure(itemValue as Inventory.UnityMeasureType);
                   setValues(prev => { return { ...prev, ...{ unityMeasure: itemValue } } });
                 }}>
                 {listUnities.map((value, key) => <Select.Item label={value.text} value={value.value} key={key} />)}
@@ -70,9 +79,9 @@ const InventoryForm = () => {
             </BoxButton>
           </FormControl>
         </Box>
-          {active &&
-            <BoxAlert data={[{ status: 'success', title: 'Produto adicionado com sucesso!' }]} setActive={setActive}></BoxAlert>
-          }
+        {active &&
+          <BoxAlert data={[{ status: 'success', title: 'Produto adicionado com sucesso!' }]} setActive={setActive}></BoxAlert>
+        }
       </Box>
     </>
   );

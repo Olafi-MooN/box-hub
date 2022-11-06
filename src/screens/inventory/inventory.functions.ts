@@ -17,11 +17,17 @@ function InventoryFunctions() {
     const res = await sqlite().exclude('Inventories', condition);
     return res;
   }
+  
+  const getId = async (condition: string) => { 
+    const res = await sqlite().exclude('Inventories', condition);
+    return res;
+  }
 
   return {
     submit,
     getAll,
-    deleteId
+    deleteId,
+    getId
   }
 }
 

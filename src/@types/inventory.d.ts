@@ -1,12 +1,7 @@
 export declare global {
   namespace Inventory {
 
-    enum EUnityMeasure {
-      'Kilo Grama',
-      'Grama',
-      'Mili Litro',
-      'Litro'
-    }
+    type UnityMeasureType = 'KG' | 'G' | 'L';
 
     interface IInventoryProps {
       id?: string;

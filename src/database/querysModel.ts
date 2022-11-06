@@ -35,6 +35,19 @@ const sqlite = () => {
     })
   }
 
+  const selectConditional = (tableName: string, condition: string): Promise<SQLResultSet> => {
+    const sql = `SELECT * FROM ${tableName} WHERE ${condition};`
+    return new Promise(resolve => {
+      db.transaction(tx => {
+        tx.executeSql(
+          sql,
+          undefined,
+          (tx, res) => resolve(res),
+          err => { throw new Error(JSON.stringify(err)) })
+      })
+    })
+  }
+
   const exclude = (tableName: string, condition: string) => {
     const sql = `DELETE FROM ${tableName} WHERE ${condition};`
     return new Promise(resolve => {
@@ -51,7 +64,8 @@ const sqlite = () => {
   return {
     insert,
     selectAll,
-    exclude
+    exclude,
+    selectConditional
   }
 }
 

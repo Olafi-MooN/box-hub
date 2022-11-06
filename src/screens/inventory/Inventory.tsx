@@ -7,6 +7,7 @@ import { BoxText } from '../../components/text/text';
 import { InventoryForm } from './inventory.form';
 import Icon from '@expo/vector-icons/MaterialIcons';
 import { InventoryList } from './inventory.list';
+import { DialogConfirm } from '../../components/dialog/dialog-confirm';
 
 const Inventory = () => {
   const navigation = useNavigation();
@@ -30,7 +31,7 @@ const Inventory = () => {
       <BoxModal onOpenModal={openModal} setOpenModal={setOpenModal}>
         <InventoryForm />
       </BoxModal>
-     
+
       <BoxModal onOpenModal={openModalView} setOpenModal={setOpenModalView}>
         <InventoryList />
       </BoxModal>
