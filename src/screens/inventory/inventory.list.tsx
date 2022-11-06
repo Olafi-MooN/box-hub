@@ -54,7 +54,7 @@ const InventoryList = () => {
   return (
     <>
       <Box alignItems="center" height={Dimensions.get('window').height - 120 - 60}>
-        <BoxText twStyle='text-stone-900 text-2xl p-4 font-bold'>Adicionar produto</BoxText>
+        <BoxText twStyle='text-stone-900 text-2xl p-4 font-bold'>Lista de produtos no estoque</BoxText>
         <BoxTable
           body={boxTableObject.body}
           columns={boxTableObject.columns}

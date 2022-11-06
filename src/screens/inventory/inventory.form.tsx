@@ -49,7 +49,7 @@ const InventoryForm = (props: InventoryFormProps) => {
   return (
     <>
       <Box alignItems="center" height={Dimensions.get('window').height - 120 - 60} width={'100%'}>
-        <BoxText twStyle='text-stone-900 text-2xl p-4 font-bold'>Adicionar produto</BoxText>
+        <BoxText twStyle='text-stone-900 text-2xl p-4 font-bold'>Adicionar estoque</BoxText>
         {!isLoading &&
           <Box w="100%" maxWidth="400px">
             <FormControl isRequired>
